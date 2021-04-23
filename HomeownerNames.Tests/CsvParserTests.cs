@@ -15,6 +15,12 @@ namespace HomeownerNames.Tests
             parser.Should().NotBeNull();
         }
         [Fact]
+        public void CsvParser_NoArguments_ReturnsNotNullObject()
+        {
+            CsvParser parser = new CsvParser();
+            parser.Should().NotBeNull();
+        }
+        [Fact]
         public void CsvParser_NullFilePath_ReturnsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new CsvParser(null));

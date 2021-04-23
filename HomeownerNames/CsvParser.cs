@@ -2,5 +2,9 @@
 {
     public class CsvParser
     {
+        public CsvParser(string filePath)
+        {
+
+        }
     }
 }

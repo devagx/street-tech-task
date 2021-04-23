@@ -23,5 +23,12 @@ namespace HomeownerNames.Tests
         {
             Assert.Throws<ArgumentException>(() => new CsvParser(""));
         }
+        [Fact]
+        public void People_IsTypeOf_ListPerson()
+        {
+            string filePath = @"C:\examples.csv";
+            CsvParser parser = new CsvParser(filePath);
+            parser.People.Should().BeOfType<List<Person>>();
+        }
     }
 }

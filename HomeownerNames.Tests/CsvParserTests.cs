@@ -46,6 +46,14 @@ namespace HomeownerNames.Tests
             Assert.Throws<FileNotFoundException>(() => parser.ProcessAllLines());
         }
         [Fact]
+        public void People_ReturnsValidList_Count18()
+        {
+            string filePath = @"C:\examples.csv";
+            CsvParser parser = new CsvParser(filePath);
+            parser.ProcessAllLines();
+            parser.People.Should().HaveCount(c => c == 18);
+        }
+        [Fact]
         public void People_ReturnsValidList_Count1()
         {
             CsvParser parser = new CsvParser();

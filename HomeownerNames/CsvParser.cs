@@ -26,5 +26,9 @@ namespace HomeownerNames
         {
 
         }
+        public void ProcessSingleLine(string line)
+        {
+
+        }
     }
 }

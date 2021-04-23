@@ -31,6 +31,48 @@ namespace HomeownerNames.Tests
             Assert.Throws<ArgumentException>(() => new CsvParser(""));
         }
         [Fact]
+        public void People_ReturnsValidList_Count1()
+        {
+            CsvParser parser = new CsvParser();
+            parser.ProcessSingleLine("Mr John Smith");
+            parser.People.Should().HaveCount(c => c == 1);
+        }
+        [Fact]
+        public void People_ReturnsValidList_Count2_a()
+        {
+            CsvParser parser = new CsvParser();
+            parser.ProcessSingleLine("Mr and Mrs Smith");
+            parser.People.Should().HaveCount(c => c == 2);
+        }
+        [Fact]
+        public void People_ReturnsValidList_Count2_b()
+        {
+            CsvParser parser = new CsvParser();
+            parser.ProcessSingleLine("Dr & Mrs Joe Bloggs");
+            parser.People.Should().HaveCount(c => c == 2);
+        }
+        [Fact]
+        public void People_ReturnsValidList_Count2_c()
+        {
+            CsvParser parser = new CsvParser();
+            parser.ProcessSingleLine("Mr Tom Staff and Mr John Doe");
+            parser.People.Should().HaveCount(c => c == 2);
+        }
+        [Fact]
+        public void People_ReturnsValidStringInitial_M()
+        {
+            CsvParser parser = new CsvParser();
+            parser.ProcessSingleLine("Mr M Mackie");
+            parser.People[0].Initial.Should().Be("M");
+        }
+        [Fact]
+        public void People_ReturnsValidStringInitial_J()
+        {
+            CsvParser parser = new CsvParser();
+            parser.ProcessSingleLine("Mr J. Smith");
+            parser.People[0].Initial.Should().Be("J");
+        }
+        [Fact]
         public void People_IsTypeOf_ListPerson()
         {
             string filePath = @"C:\examples.csv";

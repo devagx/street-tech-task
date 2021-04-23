@@ -18,5 +18,10 @@ namespace HomeownerNames.Tests
         {
             Assert.Throws<ArgumentNullException>(() => new CsvParser(null));
         }
+        [Fact]
+        public void CsvParser_EmptyFilePath_ReturnsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new CsvParser(""));
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using System;
 using Xunit;
 
 namespace HomeownerNames.Tests
@@ -11,6 +12,11 @@ namespace HomeownerNames.Tests
             string filePath = @"C:\examples.csv";
             CsvParser parser = new CsvParser(filePath);
             parser.Should().NotBeNull();
+        }
+        [Fact]
+        public void CsvParser_NullFilePath_ReturnsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new CsvParser(null));
         }
     }
 }

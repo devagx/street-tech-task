@@ -22,5 +22,9 @@ namespace HomeownerNames
                 throw new ArgumentException("Zero-length string invalid", "filePath");
             }
         }
+        public CsvParser()
+        {
+
+        }
     }
 }

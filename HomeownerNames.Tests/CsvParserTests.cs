@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Xunit;
 
 namespace HomeownerNames.Tests
@@ -29,6 +30,20 @@ namespace HomeownerNames.Tests
         public void CsvParser_EmptyFilePath_ReturnsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new CsvParser(""));
+        }
+        [Fact]
+        public void RunParser_InvalidFolderPath_ReturnsDirectoryNotFoundException()
+        {
+            string filePath = @"C:\invalidpath\examples.csv";
+            CsvParser parser = new CsvParser(filePath);
+            Assert.Throws<DirectoryNotFoundException>(() => parser.ProcessAllLines());
+        }
+        [Fact]
+        public void RunParser_InvalidFileName_ReturnsFileNotFoundException()
+        {
+            string filePath = @"C:\invalidfile.csv";
+            CsvParser parser = new CsvParser(filePath);
+            Assert.Throws<FileNotFoundException>(() => parser.ProcessAllLines());
         }
         [Fact]
         public void People_ReturnsValidList_Count1()

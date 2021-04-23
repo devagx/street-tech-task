@@ -26,6 +26,10 @@ namespace HomeownerNames
         {
 
         }
+        public void ProcessAllLines()
+        {
+
+        }
         public void ProcessSingleLine(string line)
         {
             PersonIdentifier(line);

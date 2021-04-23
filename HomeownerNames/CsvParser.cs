@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace HomeownerNames
 {
     public class CsvParser
     {
+        private string[] csvLines;
+        private string filePath;
         private List<Person> people = new List<Person>();
 
         public List<Person> People
@@ -21,18 +25,39 @@ namespace HomeownerNames
             {
                 throw new ArgumentException("Zero-length string invalid", "filePath");
             }
+            this.filePath = filePath;
         }
         public CsvParser()
         {
 
+
         }
         public void ProcessAllLines()
         {
-
+            ReadFile();
         }
         public void ProcessSingleLine(string line)
         {
             PersonIdentifier(line);
+        }
+        private void ReadFile()
+        {
+            try
+            {
+                csvLines = File.ReadAllLines(filePath);
+                //Ignore first linein file.
+                csvLines = csvLines.Skip(1).ToArray();
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
         }
         private void PersonIdentifier(string line)
         {

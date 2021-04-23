@@ -10,6 +10,10 @@ namespace HomeownerNames
             {
                 throw new ArgumentNullException("filePath");
             }
+            if (filePath.Length == 0)
+            {
+                throw new ArgumentException("Zero-length string invalid", "filePath");
+            }
         }
     }
 }

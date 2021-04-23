@@ -30,15 +30,20 @@ namespace HomeownerNames
         public CsvParser()
         {
 
-
         }
         public void ProcessAllLines()
         {
             ReadFile();
+            ParseLines();
+            CleanUp();
         }
         public void ProcessSingleLine(string line)
         {
             PersonIdentifier(line);
+        }
+        private void CleanUp()
+        {
+            csvLines = null;
         }
         private void ReadFile()
         {
@@ -54,6 +59,21 @@ namespace HomeownerNames
                 throw ex;
             }
             catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+        private void ParseLines()
+        {
+            try
+            {
+                foreach (var line in csvLines)
+                {
+                    PersonIdentifier(line);
+                }
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 throw ex;
